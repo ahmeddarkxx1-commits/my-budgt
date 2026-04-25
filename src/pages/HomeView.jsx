@@ -50,36 +50,51 @@ const HomeView = () => {
     >
       {/* Header */}
       <header className="flex items-center justify-between">
-        <div>
-          <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest">أهلاً بك، {user?.email?.split('@')[0]}</p>
-          <h1 className="text-4xl font-black text-foreground tracking-tight flex items-center gap-2">
-            لوحة التحكم <LayoutDashboard className="text-primary" size={28} />
+        <div className="space-y-1">
+          <motion.p 
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]"
+          >
+            {format(new Date(), 'EEEE, d MMMM')}
+          </motion.p>
+          <h1 className="text-4xl font-black text-foreground tracking-tighter flex items-center gap-3">
+            أهلاً، {user?.email?.split('@')[0]} <span className="animate-bounce">👋</span>
           </h1>
         </div>
-        <div className="w-12 h-12 rounded-2xl glass-card flex items-center justify-center text-primary">
-          <Zap size={24} className="fill-current" />
-        </div>
+        <motion.div 
+          whileHover={{ rotate: 180, scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="w-14 h-14 rounded-[1.5rem] glass-card flex items-center justify-center text-primary shadow-xl shadow-primary/10 border-primary/20 cursor-pointer"
+        >
+          <Zap size={28} className="fill-current" />
+        </motion.div>
       </header>
 
       {/* Main Wallet Card */}
       <motion.section 
         variants={item}
-        className="relative group h-64 overflow-hidden rounded-[3rem] shadow-2xl shadow-primary/20"
+        whileHover={{ y: -5 }}
+        className="relative group h-72 overflow-hidden rounded-[3.5rem] shadow-2xl shadow-primary/20"
       >
-        <div className="absolute inset-0 gradient-primary transition-transform duration-700 group-hover:scale-110" />
+        <div className="absolute inset-0 gradient-primary transition-transform duration-1000 group-hover:scale-110" />
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-32 -mt-32 animate-pulse" />
         
-        <div className="relative z-10 h-full p-8 flex flex-col justify-between text-white">
+        <div className="relative z-10 h-full p-10 flex flex-col justify-between text-white">
           <div className="flex justify-between items-start">
             <div>
-              <p className="text-xs font-bold opacity-60 uppercase tracking-widest mb-1">الرصيد الكلي</p>
-              <h2 className="text-5xl font-black tracking-tighter">
+              <p className="text-xs font-bold opacity-60 uppercase tracking-widest mb-2">إجمالي الرصيد</p>
+              <h2 className="text-6xl font-black tracking-tighter flex items-baseline gap-2">
                 {balance.toLocaleString()} <span className="text-2xl font-medium opacity-60">{symbol}</span>
               </h2>
             </div>
-            <div className="p-4 bg-white/20 backdrop-blur-xl rounded-3xl border border-white/10">
-              <Wallet size={28} />
-            </div>
+            <motion.div 
+              whileHover={{ rotate: 15 }}
+              className="p-5 bg-white/20 backdrop-blur-2xl rounded-[2rem] border border-white/20 shadow-xl"
+            >
+              <Wallet size={32} />
+            </motion.div>
           </div>
 
           <div className="grid grid-cols-2 gap-6 pt-6 border-t border-white/10">

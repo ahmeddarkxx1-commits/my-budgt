@@ -9,6 +9,8 @@ import { useAuthStore } from './store/useAuthStore';
 import { useProductivityStore } from './store/useProductivityStore';
 import { useFinanceStore } from './store/useFinanceStore';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Toaster, toast } from 'react-hot-toast';
+import { Zap } from 'lucide-react';
 
 function App() {
   const [activeTab, setActiveTab] = useState('home');
@@ -58,6 +60,7 @@ function App() {
   return (
     <div className="min-h-screen pb-20 bg-background text-foreground transition-colors duration-300">
       <main className="container mx-auto max-w-lg px-4 pt-6">
+        <Toaster position="top-center" reverseOrder={false} />
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -69,8 +72,25 @@ function App() {
             {renderView()}
           </motion.div>
         </AnimatePresence>
+      <AnimatePresence>
+        {activeTab === 'home' && (
+          <motion.div 
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
+            className="fixed bottom-28 right-8 z-50"
+          >
+            <button 
+              className="fab-button shadow-2xl shadow-primary/50"
+              onClick={() => setActiveTab('finance')}
+            >
+              <Zap size={28} className="fill-current" />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       </main>
-      
       <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
     </div>
   );

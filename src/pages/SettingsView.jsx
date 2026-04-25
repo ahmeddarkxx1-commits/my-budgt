@@ -5,7 +5,7 @@ import { User, Shield, Bell, Moon, LogOut, ChevronRight, Globe, Tags, Plus, Tras
 import { motion, AnimatePresence } from 'framer-motion';
 
 const SettingsView = () => {
-  const { user, logout } = useAuthStore();
+  const { user, signOut } = useAuthStore();
   const { currency, setCurrency, categories, addCategory, deleteCategory } = useFinanceStore();
   const [isDarkMode, setIsDarkMode] = useState(document.documentElement.classList.contains('dark'));
   const [showCategoryManager, setShowCategoryManager] = useState(false);
@@ -178,7 +178,7 @@ const SettingsView = () => {
 
       {/* Logout */}
       <button 
-        onClick={logout}
+        onClick={signOut}
         className="w-full flex items-center justify-center gap-2 p-4 bg-destructive/10 text-destructive rounded-3xl font-bold hover:bg-destructive/20 transition-colors border border-destructive/20"
       >
         <LogOut size={20} />

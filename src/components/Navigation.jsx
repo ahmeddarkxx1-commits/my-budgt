@@ -108,7 +108,7 @@ const Navigation = ({ activeTab, setActiveTab }) => {
               {activeTab === item.id && (
                 <motion.div 
                   layoutId="activeTabIndicator"
-                  className="absolute -bottom-2 w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_10px_rgba(99,102,241,0.5)]" 
+                  className="absolute -top-1 w-12 h-1 bg-primary rounded-full shadow-[0_0_15px_rgba(99,102,241,0.8)]" 
                 />
               )}
             </button>

@@ -3,18 +3,34 @@ import { useAuthStore } from '../store/useAuthStore';
 import { Mail, Lock, User, ArrowLeft, Code, Shield, Zap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import { toast } from 'react-hot-toast';
+
 const AuthView = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login, signup, loading, error } = useAuthStore();
+  const { login, signup, loading, error: storeError } = useAuthStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isLogin) {
-      await login(email, password);
-    } else {
-      await signup(email, password);
+    try {
+      if (isLogin) {
+        const res = await login(email, password);
+        if (res?.error) {
+          toast.error(res.error.message || 'فشل تسجيل الدخول');
+        } else {
+          toast.success('مرحباً بك مجدداً!');
+        }
+      } else {
+        const res = await signup(email, password);
+        if (res?.error) {
+          toast.error(res.error.message || 'فشل إنشاء الحساب');
+        } else {
+          toast.success('تم إنشاء الحساب بنجاح! تفقد بريدك الإلكتروني لتأكيد الحساب');
+        }
+      }
+    } catch (err) {
+      toast.error('حدث خطأ غير متوقع');
     }
   };
 
@@ -76,13 +92,13 @@ const AuthView = () => {
             </div>
 
             <AnimatePresence>
-              {error && (
+              {storeError && (
                 <motion.div 
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
                   className="bg-destructive/10 text-destructive text-xs font-bold p-4 rounded-2xl border border-destructive/20 text-right"
                 >
-                  {error}
+                  {storeError}
                 </motion.div>
               )}
             </AnimatePresence>

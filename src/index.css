@@ -1,17 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #6366f1;
-  --color-primary-hover: #4f46e5;
-  --color-secondary: #10b981;
-  --color-accent: #f59e0b;
-  --color-background: #f8fafc;
-  --color-foreground: #0f172a;
-  --color-card: #ffffff;
-  --color-border: #e2e8f0;
-  --color-muted: #64748b;
-  --color-destructive: #ef4444;
-  --color-success: #10b981;
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-border: hsl(var(--border));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
 }
 
 @layer base {
@@ -81,26 +85,30 @@
 }
 
 @utility glass-card {
-  @apply bg-card/70 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+  @apply bg-card/60 backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.08)];
+}
+
+@utility glass-nav {
+  @apply bg-card/70 backdrop-blur-3xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.1)];
 }
 
 @utility settings-item {
-  @apply w-full flex items-center justify-between p-4 rounded-2xl hover:bg-muted/50 transition-all active:scale-[0.98];
+  @apply w-full flex items-center justify-between p-4 rounded-3xl hover:bg-muted/50 transition-all active:scale-[0.98] border border-transparent hover:border-border/50;
 }
 
 @layer components {
   .mobile-bottom-nav {
-    @apply fixed bottom-6 left-6 right-6 h-18 bg-card/80 backdrop-blur-2xl border border-white/20 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] flex items-center justify-around px-4 z-40;
+    @apply fixed bottom-6 left-6 right-6 h-20 glass-nav rounded-[2.5rem] flex items-center justify-around px-4 z-40;
   }
 
   .fab-button {
-    @apply w-14 h-14 gradient-primary text-white rounded-2xl shadow-xl shadow-primary/30 flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 border-4 border-background;
+    @apply w-16 h-16 gradient-primary text-white rounded-3xl shadow-2xl shadow-primary/40 flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 border-4 border-background;
   }
 }
 
 /* Input Styles */
 input, select, textarea {
-  @apply bg-muted/50 border-none rounded-2xl p-4 focus:ring-2 focus:ring-primary/40 transition-all;
+  @apply bg-muted/30 border border-transparent rounded-2xl p-4 focus:ring-2 focus:ring-primary/40 focus:bg-card focus:border-primary/20 transition-all outline-none;
 }
 
 /* Animations */
