@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuthStore } from '../store/useAuthStore';
-import { Mail, Lock, User, ArrowRight, Code, Shield, Zap } from 'lucide-react';
+import { Mail, Lock, User, ArrowLeft, Code, Shield, Zap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const AuthView = () => {
@@ -19,7 +19,7 @@ const AuthView = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-background relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center p-6 bg-background relative overflow-hidden" dir="rtl">
       {/* Background Decorative Elements */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full gradient-primary blur-[120px] opacity-20 animate-pulse" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full gradient-secondary blur-[120px] opacity-20 animate-pulse" />
@@ -44,32 +44,32 @@ const AuthView = () => {
         </div>
 
         <div className="glass-card p-8 rounded-[3rem] shadow-2xl">
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground px-2">البريد الإلكتروني</label>
+              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground px-2 block text-right">البريد الإلكتروني</label>
               <div className="relative group">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors" size={20} />
+                <Mail className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors" size={20} />
                 <input 
                   type="email" 
                   placeholder="name@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-muted/50 border-none focus:ring-2 focus:ring-primary/40 transition-all font-medium"
+                  className="w-full pr-12 pl-4 py-4 rounded-2xl bg-muted/50 border-none focus:ring-2 focus:ring-primary/40 transition-all font-medium text-right"
                   required
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground px-2">كلمة المرور</label>
+              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground px-2 block text-right">كلمة المرور</label>
               <div className="relative group">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors" size={20} />
+                <Lock className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors" size={20} />
                 <input 
                   type="password" 
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-muted/50 border-none focus:ring-2 focus:ring-primary/40 transition-all font-medium"
+                  className="w-full pr-12 pl-4 py-4 rounded-2xl bg-muted/50 border-none focus:ring-2 focus:ring-primary/40 transition-all font-medium text-right"
                   required
                 />
               </div>
@@ -80,7 +80,7 @@ const AuthView = () => {
                 <motion.div 
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
-                  className="bg-destructive/10 text-destructive text-xs font-bold p-4 rounded-2xl border border-destructive/20"
+                  className="bg-destructive/10 text-destructive text-xs font-bold p-4 rounded-2xl border border-destructive/20 text-right"
                 >
                   {error}
                 </motion.div>
@@ -93,11 +93,11 @@ const AuthView = () => {
               className="w-full py-5 gradient-primary text-white rounded-2xl font-black shadow-xl shadow-primary/30 flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50"
             >
               {loading ? 'جاري التحميل...' : (isLogin ? 'تسجيل الدخول' : 'إنشاء حساب')}
-              {!loading && <ArrowRight size={20} />}
+              {!loading && <ArrowLeft size={20} />}
             </button>
           </form>
 
-          <div className="mt-8 flex flex-col items-center gap-6">
+          <div className="mt-10 flex flex-col items-center gap-6">
             <div className="flex items-center gap-4 w-full">
               <div className="h-px bg-border flex-1" />
               <span className="text-[10px] font-bold text-muted-foreground uppercase">أو عبر</span>
