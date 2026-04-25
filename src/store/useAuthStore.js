@@ -24,7 +24,10 @@ export const useAuthStore = create((set) => ({
     })
     
     if (error) {
-      set({ error: error.message, loading: false })
+      const msg = error.message === 'Failed to fetch' 
+        ? 'فشل الاتصال بسيرفر Supabase. تأكد من صحة المفتاح وإعادة تشغيل السيرفر.' 
+        : error.message;
+      set({ error: msg, loading: false })
       return { error }
     }
     
@@ -40,7 +43,10 @@ export const useAuthStore = create((set) => ({
     })
     
     if (error) {
-      set({ error: error.message, loading: false })
+      const msg = error.message === 'Failed to fetch' 
+        ? 'فشل الاتصال بسيرفر Supabase. تأكد من صحة المفتاح وإعادة تشغيل السيرفر.' 
+        : error.message;
+      set({ error: msg, loading: false })
       return { error }
     }
     
