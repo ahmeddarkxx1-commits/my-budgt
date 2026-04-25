@@ -220,29 +220,30 @@ const FinanceView = () => {
             <motion.div 
               layout
               key={t.id} 
-              className="glass-card p-5 rounded-[2rem] flex items-center justify-between group hover:border-primary/40 transition-all shadow-sm"
+              whileHover={{ x: 10, scale: 1.01 }}
+              className="glass-card p-6 rounded-[2.5rem] flex items-center justify-between group border-2 border-transparent hover:border-primary/20 transition-all duration-300 shadow-sm"
             >
-              <div className="flex items-center gap-5">
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 ${t.type === 'income' ? 'bg-emerald-50 text-emerald-500' : 'bg-rose-50 text-rose-500'}`}>
-                  {t.type === 'income' ? <ArrowUpRight size={28} /> : <ArrowDownRight size={28} />}
+              <div className="flex items-center gap-6">
+                <div className={`w-16 h-16 rounded-[1.5rem] flex items-center justify-center transition-all group-hover:rotate-12 ${t.type === 'income' ? 'bg-emerald-50 text-emerald-500 shadow-lg shadow-emerald-500/10' : 'bg-rose-50 text-rose-500 shadow-lg shadow-rose-500/10'}`}>
+                  {t.type === 'income' ? <ArrowUpRight size={32} /> : <ArrowDownRight size={32} />}
                 </div>
                 <div>
-                  <p className="font-bold text-foreground">{t.description || categories.find(c => c.id === t.categoryId)?.name || 'معاملة'}</p>
-                  <p className="text-[10px] font-bold text-muted uppercase tracking-widest">{format(new Date(t.date), 'MMM d, hh:mm a')}</p>
+                  <p className="text-lg font-black text-foreground mb-0.5">{t.description || categories.find(c => c.id === t.categoryId)?.name || 'معاملة'}</p>
+                  <p className="text-[10px] font-black text-muted-foreground/60 uppercase tracking-[0.15em]">{format(new Date(t.date), 'MMM d, hh:mm a')}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-6">
                 <div className="text-right">
-                  <p className={`text-xl font-black ${t.type === 'income' ? 'text-emerald-500' : 'text-foreground'}`}>
+                  <p className={`text-2xl font-black tracking-tighter ${t.type === 'income' ? 'text-emerald-500' : 'text-foreground'}`}>
                     {t.type === 'income' ? '+' : '-'}{t.amount.toLocaleString()}
                   </p>
-                  <p className="text-[10px] font-bold text-muted-foreground">{symbol}</p>
+                  <p className="text-[10px] font-black text-muted-foreground/40">{symbol}</p>
                 </div>
                 <button 
                   onClick={() => deleteTransaction(t.id)}
-                  className="p-2 text-muted-foreground hover:text-rose-500 transition-colors"
+                  className="p-3 bg-muted/20 text-muted-foreground hover:text-rose-500 hover:bg-rose-50 rounded-2xl transition-all"
                 >
-                  <Trash2 size={18} />
+                  <Trash2 size={20} />
                 </button>
               </div>
             </motion.div>

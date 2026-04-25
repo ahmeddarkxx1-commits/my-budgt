@@ -163,13 +163,14 @@ const ProductivityView = () => {
                   <motion.div 
                     layout
                     key={task.id} 
-                    className={`glass-card p-5 rounded-[2rem] flex items-center gap-4 group hover:border-primary/40 transition-all ${status === 'done' ? 'opacity-60' : ''}`}
+                    whileHover={{ scale: 1.02 }}
+                    className={`glass-card p-6 rounded-[2.5rem] flex items-center gap-5 group border-2 border-transparent hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 ${status === 'done' ? 'opacity-50 grayscale-[0.5]' : ''}`}
                   >
                     <button 
                       onClick={() => updateTask(task.id, { status: task.status === 'done' ? 'todo' : 'done' })}
-                      className={`w-8 h-8 rounded-xl border-2 flex items-center justify-center transition-all ${task.status === 'done' ? 'bg-secondary border-secondary text-white' : 'border-muted-foreground/30 hover:border-primary'}`}
+                      className={`w-10 h-10 rounded-2xl border-2 flex items-center justify-center transition-all ${task.status === 'done' ? 'bg-primary border-primary text-white' : 'border-muted-foreground/20 bg-muted/20 hover:border-primary group-hover:scale-110'}`}
                     >
-                      {task.status === 'done' && <CheckCircle2 size={18} />}
+                      {task.status === 'done' ? <CheckCircle2 size={20} /> : <Circle size={20} className="opacity-20" />}
                     </button>
 
                     <div className="flex-1">

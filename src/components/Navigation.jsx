@@ -93,22 +93,23 @@ const Navigation = ({ activeTab, setActiveTab }) => {
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              className={`flex flex-col items-center justify-center space-y-1 transition-all flex-1 relative ${
-                activeTab === item.id ? 'text-primary' : 'text-muted hover:text-foreground'
+              className={`flex flex-col items-center justify-center space-y-1.5 transition-all flex-1 relative ${
+                activeTab === item.id ? 'text-primary' : 'text-muted-foreground/60 hover:text-foreground'
               }`}
             >
               <motion.div
-                animate={activeTab === item.id ? { y: -2, scale: 1.1 } : { y: 0, scale: 1 }}
+                animate={activeTab === item.id ? { y: -4, scale: 1.15 } : { y: 0, scale: 1 }}
+                className={activeTab === item.id ? 'drop-shadow-[0_0_12px_rgba(99,102,241,0.5)]' : ''}
               >
                 <item.icon size={26} strokeWidth={activeTab === item.id ? 2.5 : 2} />
               </motion.div>
-              <span className={`text-[10px] font-black uppercase tracking-widest transition-opacity ${activeTab === item.id ? 'opacity-100' : 'opacity-0 h-0'}`}>
+              <span className={`text-[9px] font-black uppercase tracking-[0.15em] transition-all duration-300 ${activeTab === item.id ? 'opacity-100' : 'opacity-0 h-0'}`}>
                 {item.label}
               </span>
               {activeTab === item.id && (
                 <motion.div 
                   layoutId="activeTabIndicator"
-                  className="absolute -top-1 w-12 h-1 bg-primary rounded-full shadow-[0_0_15px_rgba(99,102,241,0.8)]" 
+                  className="absolute -bottom-1 w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_15px_rgba(99,102,241,1)]" 
                 />
               )}
             </button>
